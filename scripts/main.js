@@ -5,6 +5,7 @@ import { OrderBtn } from "./PlaceOrder.js";
 import { Orders } from "./DisplayOrders.js";
 
 const container = document.getElementById("container")
+const header = document.getElementById("header")
 
 const render = async () => {
     const metalsHTML = await MetalOptions()
@@ -13,8 +14,11 @@ const render = async () => {
     const orderBtnHTML = OrderBtn()
     const ordersHTML = await Orders()
 
-    const composedHTML = `
+    const headerHTML = `
     <h1>Kneel Diamonds</h1>
+    `
+
+    const composedHTML = `
     
     <article class='choices'>
         <section class='choices-metals options'>
@@ -45,6 +49,7 @@ const render = async () => {
     </article>
 
     `
+    header.innerHTML = headerHTML
 
     container.innerHTML = composedHTML
 }

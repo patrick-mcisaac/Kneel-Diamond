@@ -1,0 +1,105 @@
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-color: rgb(22, 11, 11);
+
+    --dark-red: rgb(172, 6, 6);
+    --light-red: rgb(255, 71, 71);
+
+    --dark-blue: rgb(15, 15, 216);
+    --light-blue: blue;
+}
+
+body {
+    margin: 2rem;
+    color: var(--font-color);
+    max-width: 100vw;
+}
+
+header {
+
+    display: flex;
+    align-items: center;
+    margin: 0 0 2rem 6rem;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+main {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    padding: 5rem 10rem;
+}
+
+.choices {
+    border: 1px dotted var(--light-blue);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2rem;
+    height: 16rem;
+    width: 15rem;
+    border-radius: 1rem;
+    box-shadow: 1px 2px 4px 0px var(--dark-blue);
+}
+
+.jewelry-options {
+    padding: 1rem 2rem;
+
+}
+
+.jewelry-option {
+    margin: .4rem 0;
+}
+
+.order {
+    align-self: flex-start;
+    width: 100%;
+    margin: -6rem 0 0 6rem;
+}
+
+button {
+    padding: 1rem 3rem;
+    border-radius: 2rem;
+    background-color: var(--dark-red);
+    color: white;
+    font-weight: bold;
+}
+
+.customOrders {
+    width: 100%;
+    margin: -8rem 0 0 6rem;
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 2rem;
+}
+
+.orders{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 1rem;
+}
+
+.orders > div {
+    margin: 0 0 1rem 0;
+}
+
+.orders p:first-of-type{
+    font-weight: bold;
+    margin: 0 0 .4rem 0;
+}
