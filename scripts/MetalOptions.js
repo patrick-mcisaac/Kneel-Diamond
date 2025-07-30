@@ -1,35 +1,26 @@
-import { setMetalState } from "./TransientState.js"
+import { setMetal } from "./TransientState.js"
 
 export const MetalOptions = async () => {
     const response = await fetch('http://localhost:8088/metals')
-    const metalsData = await response.json()
+    const metals = await response.json()
 
-    document.addEventListener('click', chooseMetal)
+    document.addEventListener('change', selectMetal)
 
-    let html = `
-    <div class='jewelry-options'>
-    `
-
-    const metalsHTML = metalsData.map((metal) => {
+    return metals.map((metal) => {
         return `
-        <div class='jewelry-option'>
-            <input type='radio' name='metal' value='${metal.id}' id='metal-${metal.id}'>
-            <label for='metal-${metal.id}'>${metal.metal}</label>
-        </div>
+        <label>
+            <input type='radio' name='metal' value='${metal.id}'> ${metal.metal}
+        </label>
         `
     }).join('')
-
-    html += `
-    ${metalsHTML}
-    </div>
-    `
-
-    return html
 }
-
-const chooseMetal = (e) => {
+// function for event listener to change state
+const selectMetal = (e) => {
+    // check name
     if(e.target.name === 'metal'){
-        const id = parseInt(e.target.value)
-        setMetalState(id)
+        const value = parseInt(e.target.value)
+        // update state
+        setMetal(value)
     }
+
 }

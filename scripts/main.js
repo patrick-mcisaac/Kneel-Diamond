@@ -1,62 +1,45 @@
-import { MetalOptions } from "./MetalOptions.js";
-import { StyleOptions } from "./StyleOptions.js";
-import { SizeOptions } from "./SizeOptions.js";
-import { OrderBtn } from "./PlaceOrder.js";
-import { Orders } from "./DisplayOrders.js";
+import { MetalOptions } from "./MetalOptions.js"
+import { SizeOptions } from "./SizeOptions.js"
+import { StyleOptions } from "./StyleOptions.js"
+import { SubmitButton } from "./SubmitButton.js"
 
-const container = document.getElementById("container")
-const header = document.getElementById("header")
+const header = document.getElementById('header')
+const container = document.getElementById('container')
 
 const render = async () => {
     const metalsHTML = await MetalOptions()
+    const sizesHTML = await SizeOptions()
     const stylesHTML = await StyleOptions()
-    const sizeHTML = await SizeOptions()
-    const orderBtnHTML = OrderBtn()
-    const ordersHTML = await Orders()
+    const submitBtnHTML = SubmitButton()
 
-    const headerHTML = `
-    <h1>Kneel Diamonds</h1>
-    `
-
-    const composedHTML = `
-    
-    <article class='choices'>
-        <section class='choices-metals options'>
+    header.innerHTML = '<h1>Kneel Diamonds</h1>'
+    let html = `
+    <section class='survey-section'>
+        <article class='survey-options'>
             <h2>Metals</h2>
             ${metalsHTML}
-        </section>
-    </article>
-    <article class='choices'>
-        <section class='choices-sizes options'>
+        </article>
+
+        <article class='survey-options'>
             <h2>Sizes</h2>
-            ${sizeHTML}
-        </section>
-    </article>
-    <article class='choices'>
-        <section class='choices-styles options'>
+            ${sizesHTML}
+        </article>
+
+        <article class='survey-options'>
             <h2>Styles</h2>
             ${stylesHTML}
-        </section>
-    </article>
+        </article>
 
-    <article class='order'>
-        ${orderBtnHTML}
-    </article>
+        ${submitBtnHTML}
 
-    <article class='customOrders'>
+    </section>
+
+    <section class='orders-section'>
         <h2>Custom Jewelry Orders</h2>
-        ${ordersHTML}
-    </article>
-
+    </section>
     `
-    header.innerHTML = headerHTML
 
-    container.innerHTML = composedHTML
+    container.innerHTML = html
 }
 
 render()
-
-document.addEventListener('newOrder', () => {
-    console.log('state has changed. Regenerating HTML ...')
-    render()
-})

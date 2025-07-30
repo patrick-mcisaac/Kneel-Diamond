@@ -1,34 +1,15 @@
-// establish initial state
-
-const orderState = {
+const transientState = {
     metalId: 0,
     sizeId: 0,
     styleId: 0
 }
 
-export const setMetalState = (chosen) => {
-    orderState.metalId = chosen
+export const setMetal = (choice) => {
+    transientState.metalId = choice
 }
-
-export const setSizeState = (chosen) => {
-    orderState.sizeId = chosen
+export const setSize = (choice) => {
+    transientState.sizeId = choice
 }
-
-export const setStyleState = (chosen) => {
-    orderState.styleId = chosen
-}
-
-export const placeOrder = async () => {
-    const postOptions = {
-        method: 'POST',
-        headers: {
-            "content-Type": "application/json"
-        },
-        body: JSON.stringify(orderState)
-    }
-
-    await fetch('http://localhost:8088/orders', postOptions)
-
-    const myEvent = new CustomEvent('newOrder')
-    document.dispatchEvent(myEvent)
+export const setStyle = (choice) => {
+    transientState.styleId = choice
 }
