@@ -65,8 +65,7 @@ input[type='radio']{
 
 button {
     position: absolute;
-    bottom: 7rem;
-    left: 10rem;
+    bottom: 2rem;
     padding: 1rem 2rem;
     border-radius: 1rem;
     border: none;
@@ -80,11 +79,27 @@ button {
 
 .orders-section {
     display: flex;
-    flex: column;
+    flex-flow: column nowrap;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    padding: 2rem 12rem;
+    gap: 1rem;
+    margin: 5rem 0 0 0;
 }
 
 .orders-section h2:first-child {
     font-size: 4rem;
+    margin: 0 0 2rem 0;
+}
+
+.orders {
+    margin: 0 0 2rem 0;
+}
+
+.orders p {
+    font-size: 2rem;
+}
+
+.priceSpan {
+    font-weight: 800;
 }

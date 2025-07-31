@@ -2,6 +2,7 @@ import { MetalOptions } from "./MetalOptions.js"
 import { SizeOptions } from "./SizeOptions.js"
 import { StyleOptions } from "./StyleOptions.js"
 import { SubmitButton } from "./SubmitButton.js"
+import { Orders } from "./customOrders.js"
 
 const header = document.getElementById('header')
 const container = document.getElementById('container')
@@ -11,6 +12,7 @@ const render = async () => {
     const sizesHTML = await SizeOptions()
     const stylesHTML = await StyleOptions()
     const submitBtnHTML = SubmitButton()
+    const ordersHTML = await Orders()
 
     header.innerHTML = '<h1>Kneel Diamonds</h1>'
     let html = `
@@ -36,6 +38,7 @@ const render = async () => {
 
     <section class='orders-section'>
         <h2>Custom Jewelry Orders</h2>
+        ${ordersHTML}
     </section>
     `
 
@@ -43,3 +46,5 @@ const render = async () => {
 }
 
 render()
+
+document.addEventListener('newOrder', render)
