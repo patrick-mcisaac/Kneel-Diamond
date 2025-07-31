@@ -8,14 +8,13 @@ export const Orders = async () => {
 
     const orderHTML = orders.map((order) => {
         const orderPrice = order.metal.price + order.style.price + order.size.price
-
         return `
         <div>
             <p>Order # ${order.id}</p>
             <p>Cost $${orderPrice}</p>
         </div>
         `
-    }).join(' ')
+    }).join('')
 
     html += `
     ${orderHTML}

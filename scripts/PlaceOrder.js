@@ -11,6 +11,7 @@ export const OrderBtn = () => {
 }
 
 const submitPost = (e) => {
+    
     if(e.target.id === 'place-order'){
         placeOrder()
     }
