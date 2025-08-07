@@ -1,24 +1,26 @@
-import { MetalOptions } from "./MetalOptions.js";
-import { StyleOptions } from "./StyleOptions.js";
-import { SizeOptions } from "./SizeOptions.js";
-import { OrderBtn } from "./PlaceOrder.js";
-import { Orders } from "./DisplayOrders.js";
+import { MetalOptions } from "./MetalOptions.js"
+import { StyleOptions } from "./StyleOptions.js"
+import { SizeOptions } from "./SizeOptions.js"
+import { OrderBtn } from "./PlaceOrder.js"
+import { Orders } from "./DisplayOrders.js"
+import { TypeOfChoice } from "./TypeOfChoice.js"
 
 const container = document.getElementById("container")
 const header = document.getElementById("header")
 
-const render = async () => {
-    const metalsHTML = await MetalOptions()
-    const stylesHTML = await StyleOptions()
-    const sizeHTML = await SizeOptions()
-    const orderBtnHTML = OrderBtn()
-    const ordersHTML = await Orders()
+export const render = async () => {
+	const metalsHTML = await MetalOptions()
+	const stylesHTML = await StyleOptions()
+	const sizeHTML = await SizeOptions()
+	const orderBtnHTML = OrderBtn()
+	const ordersHTML = await Orders()
+	const typeHTML = TypeOfChoice()
 
-    const headerHTML = `
+	const headerHTML = `
     <h1>Kneel Diamonds</h1>
     `
 
-    const composedHTML = `
+	const composedHTML = `
     
     <article class='choices'>
         <section class='choices-metals options'>
@@ -40,6 +42,7 @@ const render = async () => {
     </article>
 
     <article class='order'>
+        ${typeHTML}
         ${orderBtnHTML}
     </article>
 
@@ -49,14 +52,14 @@ const render = async () => {
     </article>
 
     `
-    header.innerHTML = headerHTML
+	header.innerHTML = headerHTML
 
-    container.innerHTML = composedHTML
+	container.innerHTML = composedHTML
 }
 
 render()
 
-document.addEventListener('newOrder', () => {
-    console.log('state has changed. Regenerating HTML ...')
-    render()
+document.addEventListener("newOrder", () => {
+	console.log("state has changed. Regenerating HTML ...")
+	render()
 })
