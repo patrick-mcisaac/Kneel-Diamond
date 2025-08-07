@@ -14,7 +14,7 @@ export const render = async () => {
 	const sizeHTML = await SizeOptions()
 	const orderBtnHTML = OrderBtn()
 	const ordersHTML = await Orders()
-	const typeHTML = TypeOfChoice()
+	const typeHTML = await TypeOfChoice()
 
 	const headerHTML = `
     <h1>Kneel Diamonds</h1>

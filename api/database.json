@@ -141,6 +141,37 @@
       "styleId": 1,
       "type": 4,
       "id": 11
+    },
+    {
+      "metalId": 2,
+      "sizeId": 4,
+      "styleId": 3,
+      "type": 2,
+      "id": 12
+    },
+    {
+      "metalId": 1,
+      "sizeId": 3,
+      "styleId": 2,
+      "type": 4,
+      "id": 13
+    },
+    {
+      "metalId": 2,
+      "sizeId": 2,
+      "styleId": 2,
+      "type": 2,
+      "id": 14
+    }
+  ],
+  "currentState": [
+    {
+      "id": 1,
+      "metalId": 0,
+      "sizeId": 0,
+      "styleId": 0,
+      "type": 1,
+      "typeId": 4
     }
   ]
 }

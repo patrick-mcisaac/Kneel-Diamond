@@ -1,37 +1,54 @@
-import { setSizeState } from "./TransientState.js"
+import {
+	setSizeState,
+	patchCurrentState,
+	getCurrentState
+} from "./TransientState.js"
 
 export const SizeOptions = async () => {
-    const response = await fetch('http://localhost:8088/sizes')
-    const sizes = await response.json()
+	const response = await fetch("http://localhost:8088/sizes")
+	const sizes = await response.json()
 
-    document.addEventListener('click', chooseSize)
+	const currentState = await getCurrentState()
+	const sizeId = currentState[0].sizeId
 
-    let html = `
+	document.addEventListener("click", chooseSize)
+
+	let html = `
         <div class='jewelry-options'>
     `
 
-    const sizeHTML = sizes.map((size) => {
-        return `
+	const sizeHTML = sizes
+		.map(size => {
+			return `
         <div class='jewelry-option'>
-            <input type='radio' name='size' value='${size.id}' id='size-${size.id}'>
+
+            <input type='radio'
+                        name='size'
+                        value='${size.id}'
+                        id='size-${size.id}'
+                        ${size.id === sizeId ? "checked" : ""}>
+        
             <label for='size-${size.id}'>${size.carets} carets</label>
         </div>
         `
-    }).join('')
+		})
+		.join("")
 
-    html += `
+	html += `
     ${sizeHTML}
     </div>
     `
 
-    return html
+	return html
 }
 
-
-const chooseSize = (e) => {
-    if(e.target.name === 'size'){
-        const id = parseInt(e.target.value)
-        setSizeState(id)
-    }
-
-} 
+const chooseSize = async e => {
+	if (e.target.name === "size") {
+		const id = parseInt(e.target.value)
+		setSizeState(id)
+		const patchData = { sizeId: id }
+		await patchCurrentState(patchData)
+		const myEvent = new CustomEvent("newOrder")
+		document.dispatchEvent(myEvent)
+	}
+}

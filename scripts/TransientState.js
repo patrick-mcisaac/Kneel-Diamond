@@ -7,9 +7,15 @@ const orderState = {
 	type: 1
 }
 
+export const getCurrentState = async () => {
+	const response = await fetch("http://localhost:8088/currentState")
+	const currentState = await response.json()
+
+	return currentState
+}
+
 export const setTypeState = chosen => {
 	orderState.type = chosen
-	console.log(orderState.type)
 }
 
 export const setMetalState = chosen => {
@@ -40,9 +46,27 @@ export const placeOrder = async () => {
 
 		await fetch("http://localhost:8088/orders", postOptions)
 
+		orderState.metalId = 0
+		orderState.sizeId = 0
+		orderState.styleId = 0
+		orderState.type = 1
+
+		await patchCurrentState(orderState)
+
 		const myEvent = new CustomEvent("newOrder")
 		document.dispatchEvent(myEvent)
 	} else {
 		window.alert("NOPE")
 	}
+}
+
+// send patch to currentState
+export const patchCurrentState = async data => {
+	await fetch(`http://localhost:8088/currentState/1`, {
+		method: "PATCH",
+		headers: {
+			"Content-Type": "application/json"
+		},
+		body: JSON.stringify(data)
+	})
 }
